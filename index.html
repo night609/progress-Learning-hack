@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Learning Hack 🌟</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">Progress Learning Hack</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#badges" class="nav-link">Badges</a></li>
+                <li><button class="nav-btn" onclick="openSettingsModal()">⚙️ Settings</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="welcome-text">Welcome, <span id="userGreeting">Learner</span>! 👋</h1>
+                <p class="tagline">Award yourself stars • Skip levels • Unlock badges • Master skills</p>
+            </div>
+            <button class="btn-primary-lg" onclick="openAddSkillModal()">+ Add New Skill</button>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard-section">
+            <h2 class="section-title">📊 Your Progress</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Total Stars</div>
+                        <div class="stat-value" id="totalStars">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Skills Tracking</div>
+                        <div class="stat-value" id="skillsCount">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Badges Earned</div>
+                        <div class="stat-value" id="badgesCount">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Max Level</div>
+                        <div class="stat-value" id="streak">0</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="section-header">
+                <h2 class="section-title">🎯 Your Skills</h2>
+                <button class="btn-secondary" onclick="openAddSkillModal()">+ Add Skill</button>
+            </div>
+            <div class="skills-container" id="skillsContainer">
+                <p style="text-align: center; color: #94a3b8; grid-column: 1 / -1; padding: 40px 20px;">
+                    No skills yet. Click "Add Skill" to start your learning journey! 🚀
+                </p>
+            </div>
+        </section>
+
+        <!-- Badges Section -->
+        <section id="badges" class="badges-section">
+            <h2 class="section-title">🏅 Achievements & Badges</h2>
+            <div class="badges-container" id="badgesContainer"></div>
+        </section>
+    </div>
+
+    <!-- Add Skill Modal -->
+    <div id="addSkillModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Skill</h2>
+                <button class="close-btn" onclick="closeAddSkillModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="skillName">Skill Name *</label>
+                    <input type="text" id="skillName" placeholder="e.g., JavaScript, Guitar, Machine Learning" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="skillCategory">Category</label>
+                    <select id="skillCategory" class="form-input">
+                        <option>Programming</option>
+                        <option>Web Development</option>
+                        <option>Data Science</option>
+                        <option>Design</option>
+                        <option>Music</option>
+                        <option>Languages</option>
+                        <option>Business</option>
+                        <option>Fitness</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeAddSkillModal()">Cancel</button>
+                <button class="btn-primary" onclick="addSkill()">Add Skill</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Award Stars Modal -->
+    <div id="awardStarsModal" class="modal">
+        <div class="modal-content modal-stars">
+            <div class="modal-header">
+                <h2>Award Stars to <span id="currentSkillName"></span></h2>
+                <button class="close-btn" onclick="closeAwardStarsModal()">✕</button>
+            </div>
+            <div class="modal-body stars-grid">
+                <button class="star-option" onclick="awardStars(1)">
+                    <div class="star-display">⭐</div>
+                    <div class="star-label">1 Star</div>
+                </button>
+                <button class="star-option" onclick="awardStars(2)">
+                    <div class="star-display">⭐⭐</div>
+                    <div class="star-label">2 Stars</div>
+                </button>
+                <button class="star-option" onclick="awardStars(3)">
+                    <div class="star-display">⭐⭐⭐</div>
+                    <div class="star-label">3 Stars</div>
+                </button>
+                <button class="star-option" onclick="awardStars(5)">
+                    <div class="star-display">⭐⭐⭐⭐⭐</div>
+                    <div class="star-label">5 Stars</div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ Settings</h2>
+                <button class="close-btn" onclick="closeSettingsModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="username">Your Name</label>
+                    <input type="text" id="username" class="form-input">
+                </div>
+                <div class="settings-info">
+                    <div class="info-item">
+                        <span class="info-label">💾 Data Storage:</span>
+                        <span class="info-value">Browser Local Storage (Auto-saved)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">🔄 Sync:</span>
+                        <span class="info-value">Syncs across all tabs automatically</span>
+                    </div>
+                </div>
+                <div class="danger-zone">
+                    <h3>⚠️ Danger Zone</h3>
+                    <p>These actions cannot be undone!</p>
+                    <button class="btn-danger" onclick="resetData()">Reset All Data</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeSettingsModal()">Cancel</button>
+                <button class="btn-primary" onclick="saveUsername()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>🌟 Progress Learning Hack v1.0 | Made with ❤️ for learners everywhere</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
